@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#111310" />
+  <meta name="theme-color" content="#111310" id="themeColorMeta" />
   <meta name="description"
     content="Gurbaksh Singh is a web developer and Shopify specialist building thoughtful business websites, custom Shopify storefronts, WordPress experiences, and web applications." />
   <title>Gurbaksh Singh — Web Developer & Shopify Specialist</title>
@@ -15,6 +15,7 @@
     rel="stylesheet" />
   <style>
     :root {
+      color-scheme: dark;
       --bg: #111310;
       --panel: #191c17;
       --panel-2: #20231d;
@@ -23,8 +24,32 @@
       --line: rgba(242, 240, 232, .13);
       --accent: #d9bd7b;
       --accent-dark: #b79a5c;
+      --topbar: rgba(17, 19, 16, .86);
+      --work-bg: #171a15;
+      --project-bg: #1c1f19;
+      --card-wash: rgba(255, 255, 255, .035);
+      --body-copy: #b8bcb0;
+      --subtle-copy: #8f9488;
       --max: 1160px;
       --radius: 22px;
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f7f6f1;
+      --panel: #ffffff;
+      --panel-2: #efeee7;
+      --text: #20231d;
+      --muted: #62685d;
+      --line: rgba(32, 35, 29, .14);
+      --accent: #94732f;
+      --accent-dark: #76591f;
+      --topbar: rgba(247, 246, 241, .9);
+      --work-bg: #eeede6;
+      --project-bg: #ffffff;
+      --card-wash: rgba(32, 35, 29, .025);
+      --body-copy: #51574d;
+      --subtle-copy: #70766a;
     }
 
     * {
@@ -106,8 +131,8 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      border-bottom: 1px solid rgba(255, 255, 255, .08);
-      background: rgba(17, 19, 16, .86);
+      border-bottom: 1px solid var(--line);
+      background: var(--topbar);
       backdrop-filter: blur(18px);
     }
 
@@ -170,6 +195,55 @@
     .nav-cta:hover {
       background: var(--accent);
       color: #111310;
+    }
+
+    .nav-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+      font-size: 11px;
+      transition: border-color .2s, background .2s, color .2s;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      background: var(--card-wash);
+    }
+
+    .theme-icon {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .theme-icon-moon {
+      display: none;
+    }
+
+    html[data-theme="light"] .theme-icon-sun {
+      display: none;
+    }
+
+    html[data-theme="light"] .theme-icon-moon {
+      display: block;
     }
 
     .menu-toggle {
@@ -560,9 +634,9 @@
     }
 
     .work-section {
-      background: #171a15;
-      border-top: 1px solid rgba(255, 255, 255, .045);
-      border-bottom: 1px solid rgba(255, 255, 255, .045);
+      background: var(--work-bg);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
     .work-grid {
@@ -575,7 +649,7 @@
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: #1c1f19;
+      background: var(--project-bg);
       transition: transform .25s, border-color .25s;
     }
 
@@ -1066,6 +1140,145 @@
       transform: translateY(0);
     }
 
+    /* Light theme: retain the muted-gold identity while shifting surfaces and copy for comfortable contrast. */
+    html[data-theme="light"] body::before {
+      opacity: .045;
+      background-image: radial-gradient(rgba(32, 35, 29, .3) .55px, transparent .55px);
+    }
+
+    html[data-theme="light"] .nav-links {
+      color: #555b50;
+    }
+
+    html[data-theme="light"] .nav-cta:hover {
+      color: #fff;
+    }
+
+    html[data-theme="light"] .availability {
+      color: #555b50;
+    }
+
+    html[data-theme="light"] .hero-lead,
+    html[data-theme="light"] .about-content>p,
+    html[data-theme="light"] .trust-item,
+    html[data-theme="light"] .skill-group li,
+    html[data-theme="light"] .tag {
+      color: #51574d;
+    }
+
+    html[data-theme="light"] .hero-footnote,
+    html[data-theme="light"] .contact-note,
+    html[data-theme="light"] .footer-inner {
+      color: #70766a;
+    }
+
+    html[data-theme="light"] .service-card {
+      background: linear-gradient(145deg, #fff, #f8f7f1);
+    }
+
+    html[data-theme="light"] .service-card:hover {
+      background: linear-gradient(145deg, #fffaf0, #f5f0e3);
+    }
+
+    html[data-theme="light"] .project {
+      box-shadow: 0 12px 32px rgba(36, 38, 29, .045);
+    }
+
+    html[data-theme="light"] .tag {
+      border-color: rgba(32, 35, 29, .16);
+    }
+
+    html[data-theme="light"] .project-status {
+      color: #70766a;
+    }
+
+    html[data-theme="light"] .service-number {
+      color: #777d70;
+    }
+
+    html[data-theme="light"] .contact-box {
+      background: radial-gradient(ellipse at 100% 0%, rgba(217, 189, 123, .19), transparent 48%), #fff;
+    }
+
+    html[data-theme="light"] .contact-box::after {
+      color: rgba(148, 115, 47, .06);
+    }
+
+    html[data-theme="light"] .btn-primary {
+      color: #fff;
+      background: #816321;
+    }
+
+    html[data-theme="light"] .btn-primary:hover {
+      background: #6d521b;
+    }
+
+    html[data-theme="light"] .project-link:hover {
+      color: #6d521b;
+    }
+
+    html[data-theme="light"] .orb {
+      background: radial-gradient(circle at 35% 30%, #d9d0b1, #a9a184 45%, #74735e 72%);
+      box-shadow: inset -20px -25px 70px rgba(0, 0, 0, .14), 0 0 100px rgba(148, 115, 47, .1);
+    }
+
+    html[data-theme="light"] .orb-letter {
+      color: #fff8df;
+      text-shadow: 0 10px 35px rgba(0, 0, 0, .2);
+    }
+
+    html[data-theme="light"] .floating-card {
+      background: rgba(255, 255, 255, .94);
+      border-color: rgba(32, 35, 29, .13);
+      box-shadow: 0 18px 45px rgba(36, 38, 29, .1);
+    }
+
+    html[data-theme="light"] .floating-card small {
+      color: #6e7468;
+    }
+
+    html[data-theme="light"] .mini-stack span {
+      background: #f0eee4;
+      border-color: #d2c9aa;
+    }
+
+    html[data-theme="light"] .skills-panel {
+      background: rgba(255, 255, 255, .68);
+    }
+
+    html[data-theme="light"] .process-card {
+      border-top-color: rgba(148, 115, 47, .55);
+    }
+
+    html[data-theme="light"] .trust-strip {
+      border-color: var(--line);
+    }
+
+    html[data-theme="light"] .btn-ghost:hover {
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 650px) {
+      .nav-tools {
+        margin-left: auto;
+        gap: 7px;
+      }
+
+      .theme-toggle {
+        min-width: 40px;
+        width: 40px;
+        padding: 0;
+      }
+
+      .theme-label {
+        display: none;
+      }
+
+      .nav-cta {
+        margin-left: 0;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
 
       *,
@@ -1142,7 +1355,7 @@
         left: 0;
         right: 0;
         padding: 20px 24px 24px;
-        background: rgba(17, 19, 16, .98);
+        background: var(--topbar);
         border-bottom: 1px solid var(--line);
         flex-direction: column;
         align-items: flex-start;
@@ -1325,7 +1538,17 @@
         <a href="#services">Services</a><a href="#work">Selected work</a><a href="#about">About</a><a
           href="#skills">Skills</a>
       </div>
-      <a class="nav-cta" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+      <div class="nav-tools">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode"
+          title="Switch to light mode"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+          </svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.9 13A8.5 8.5 0 0 1 11 3.1 8.5 8.5 0 1 0 20.9 13Z" />
+          </svg><span class="theme-label">Light</span></button>
+        <a class="nav-cta" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+      </div>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"><svg width="18"
           height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <path d="M4 7h16M4 12h16M4 17h16" />
@@ -1736,6 +1959,23 @@
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
+    const themeToggle = document.getElementById('themeToggle');
+    const themeColorMeta = document.getElementById('themeColorMeta');
+    const savedTheme = localStorage.getItem('gurbaksh-portfolio-theme');
+    const applyTheme = theme => {
+      document.documentElement.dataset.theme = theme;
+      const isLight = theme === 'light';
+      themeToggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+      themeToggle.setAttribute('title', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+      themeToggle.querySelector('.theme-label').textContent = isLight ? 'Dark' : 'Light';
+      themeColorMeta.setAttribute('content', isLight ? '#f7f6f1' : '#111310');
+    };
+    applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      localStorage.setItem('gurbaksh-portfolio-theme', nextTheme);
+    });
     menuToggle.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('open');
       menuToggle.setAttribute('aria-expanded', String(isOpen));
@@ -1752,7 +1992,7 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, {threshold: 0.12});
+    }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     // Before publishing: replace YOUR_EMAIL@example.com and 91YOURNUMBER with your real contact details.
     // Add a real PDF URL to the Resume / CV button once your resume is ready.
